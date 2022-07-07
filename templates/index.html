@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{%  block content  %}
+<h1>Fringe Event List</h1>
+<div class="wrapper">
+    <ul>
+        {% for event  in fringe_events %}
+            <li>
+                {{ event.event_name}}, {{event.date}}, {{event.num_of_guests}}, {{event.room_location}}: {{event.description}}
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="input-form">
+        <form action="/events" method="post">
+
+            <label for="input_show_date">Show Date:</label>
+            <input type="date" name="input_show_date" id="show_date">
+            
+            <label for="input_show_name">Show Name:</label>
+            <input type="text" name="input_show_name" id="show_name">
+            
+            <label for="input_show_capacity">Capacity:</label>
+            <input type="text" name="input_show_capacity" id="show_capacity">
+            <br>
+            <label for="input_show_room_location">Show Location:</label>
+            <textarea name="input_show_room_location" id="show_location" cols="20" rows="5"></textarea>
+            <br>
+            <label for="input_show_description">Show Description:</label>
+            <textarea name="input_show_description" id="show_description" cols="20" rows="5"></textarea>
+            <br>
+            <label for="input_recurring_event">Is this event ongoing?</label>
+            <select name="input_recurring_event" id="recurring_event">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+            <br>
+            <button>Add Event</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}
